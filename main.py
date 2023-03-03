@@ -48,7 +48,7 @@ def unlockDoor():
     datapin = 4
     GPIO.setup(datapin, GPIO.OUT)
     GPIO.output(datapin, GPIO.HIGH)
-    time.sleep(20)
+    time.sleep(10)
     GPIO.output(datapin, GPIO.LOW)
     print("door unlocked")
     #Add logic to open door when part is provided 
