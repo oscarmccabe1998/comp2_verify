@@ -1,8 +1,9 @@
 
 import json
 import bcrypt 
+import RPi.GPIO as GPIO
+import time
 from conn import query, insert, removeOutliers
-
 
 
 def control_loop():
@@ -43,6 +44,12 @@ def verify(hashedpw, pwd):          #verifys bcrypt string held in database
     return result
 
 def unlockDoor():
+    GPIO.setmode(GPIO.BCM)
+    datapin = 4
+    GPIO.setup(datapin, GPIO.OUT)
+    GPIO.output(GPIO.HIGH)
+    time.sleep(20)
+    GPIO.output(GPIO.LOW)
     print("door unlocked")
     #Add logic to open door when part is provided 
 
