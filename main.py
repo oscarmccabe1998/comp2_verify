@@ -11,21 +11,24 @@ def control_loop():
     while otp != 'quit':
         otp = input("otp: ")
         print(otp)
-        newData = json.loads(otp)
-        email = newData['email']
-        pwd = newData['oTP']
-        print(email)
-        print(pwd)
-        response = query(email)         #calls funciton in conn.py to get info from db document
-        if response != "query is null":
-            res = verify(response.pwd, pwd)
-            if res == True:
-                insert(response)
+        try:
+            newData = json.loads(otp)
+            email = newData['email']
+            pwd = newData['oTP']
+            print(email)
+            print(pwd)
+            response = query(email)         #calls funciton in conn.py to get info from db document
+            if response != "query is null":
+                res = verify(response.pwd, pwd)
+                if res == True:
+                    insert(response)
+                else:
+                    print("QR too old")     #handled cases for invalid QR codes
+                    removeOutliers()
             else:
-                print("QR too old")     #handled cases for invalid QR codes
-                removeOutliers()
-        else:
-            print("err")
+                print("err")
+        except:
+            print("Not in JSON format")
 
     else:
         print("There was some error")
