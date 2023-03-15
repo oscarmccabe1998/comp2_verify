@@ -49,6 +49,7 @@ def checkAdmin(email):
         print ('check opening times and all that')
     else:
         print('not a valid user')
+    return admin
 
 def CheckKillSwitch():
     killsSwtichState = db.collection(u'Admin').document(u'killswitch').get()
