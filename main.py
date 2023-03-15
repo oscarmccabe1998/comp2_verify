@@ -41,7 +41,8 @@ def verify(hashedpw, pwd):          #verifys bcrypt string held in database
     result = bcrypt.checkpw(bytes, hash)
     if result == True: 
         print(result)
-        unlockDoor()
+        #unlockDoor()
+        print('unlocked')
     else:
         print("Auth failed")
     return result
